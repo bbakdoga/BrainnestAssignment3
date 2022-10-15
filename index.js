@@ -60,17 +60,11 @@ function playRound(playerSelection,computerSelection){
     draws++;
     return "Draw, you both picked " + playerSelection.toLowerCase() + "!";
   }
-  if(playerSelection == selection[0].toLowerCase() && computerSelection == selection[2]){
+  if(playerSelection == selection[0].toLowerCase() && computerSelection == selection[2] ||
+  playerSelection == selection[1].toLowerCase() && computerSelection == selection[0] || 
+  playerSelection == selection[2].toLowerCase() && computerSelection == selection[1]){
     wins++;
     return "Win, " + playerSelection + " beats " + computerSelection.toLowerCase() + "!";
-  } 
-  else if (playerSelection == selection[1].toLowerCase() && computerSelection == selection[0]) {
-    wins++;
-    return "Win, " + playerSelection + " beats " + computerSelection.toLowerCase() + "!";
-  }
-  else if(playerSelection == selection[2].toLowerCase() && computerSelection == selection[1]){
-    wins++;
-    return "Win, " + playerSelection+ " beats " + computerSelection.toLowerCase() + "!";
   } 
   else {
     return "Lose, " +  computerSelection + " beats " + playerSelection.toLowerCase() + "!";
