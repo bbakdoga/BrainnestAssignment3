@@ -68,7 +68,7 @@ function playRound(playerSelection,computerSelection){
     wins++;
     return "Win, " + playerSelection + " beats " + computerSelection.toLowerCase() + "!";
   }
-  else if(playerSelection == selection[2].toLowerCase() && computerSelection == selection[0]){
+  else if(playerSelection == selection[2].toLowerCase() && computerSelection == selection[1]){
     wins++;
     return "Win, " + playerSelection+ " beats " + computerSelection.toLowerCase() + "!";
   } 
