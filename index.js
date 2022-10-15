@@ -39,6 +39,7 @@ function conditions(){
 let selection = ["Rock","Paper","Scissors"];
 // win counter
 let wins = 0;
+let draws = 0;
 /**
  * picks a random string from the array
  * @returns randomly selected string
@@ -56,6 +57,7 @@ function computerPlay(){
 function playRound(playerSelection,computerSelection){
   playerSelection = playerSelection.toLowerCase();
   if(playerSelection == computerSelection.toLowerCase()){
+    draws++;
     return "Draw, you both picked " + playerSelection.toLowerCase() + "!";
   }
   if(playerSelection == selection[0].toLowerCase() && computerSelection == selection[2]){
@@ -99,6 +101,14 @@ function game(){
     } while(valid == false);
     console.log(playRound(userInput, computerPlay()));
   }
-  console.log("You won " + wins + " out of 5 rounds!");  
+  let losses = 5 - (draws + wins);
+  console.log("You got " + wins + " wins " + draws + " draws " + losses + " losses " + "out of 5 rounds!"); 
+  if( wins > losses) {
+    console.log("Player wins!");
+  } else if(losses > wins){
+    console.log("Computer wins, good luck next time!");
+  } else {
+    console.log("It's a draw");
+  }
 }
 game();
