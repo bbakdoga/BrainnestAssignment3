@@ -23,8 +23,8 @@ function conditions(){
     console.log("Your input "+ inputs[inputs.length - 1] + " is an odd number");
   }
 }
-
 var selection;
+let wins = 0;
 function computerPlay(){
    selection = [
     "Rock",
@@ -46,17 +46,19 @@ function playRound(playerSelection,computerSelection){
   if(valid == false){
     return "Invalid input, please try again!"
   }
-  //Check if it's a valid user input
   if(newPlayerSelection == computerSelection){
     return "Draw, you both picked " + newPlayerSelection.toLowerCase() + "!";
   }
   if(newPlayerSelection == "Rock" && computerSelection == "Scissors"){
+    wins++;
     return "Win, " + newPlayerSelection.toLowerCase() + " beats " + computerSelection.toLowerCase() + "!";
   } 
   else if (newPlayerSelection == "Paper" && computerSelection == "Rock") {
+    wins++;
     return "Win, " + newPlayerSelection.toLowerCase() + " beats " + computerSelection.toLowerCase() + "!";
   }
   else if(newPlayerSelection == "Scissors" && computerSelection == "Paper"){
+    wins++;
     return "Win, " + newPlayerSelection.toLowerCase() + " beats " + computerSelection.toLowerCase() + "!";
   } 
   else {
@@ -64,9 +66,9 @@ function playRound(playerSelection,computerSelection){
   }
 }
 function game(){
-  let wins = 0;
   for(let i = 0; i < 5; i++){
     let userInput  = prompt("Please enter Rock, Paper, or Scissors");
     console.log(playRound(userInput, computerPlay()));
   }
+  console.log("You won " + wins + " out of 5 rounds!");
 }
