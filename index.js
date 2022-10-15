@@ -36,7 +36,7 @@ function conditions(){
   }
 }
 // selection array
-let selection;
+let selection = ["Rock","Paper","Scissors",];
 // win counter
 let wins = 0;
 /**
@@ -44,11 +44,6 @@ let wins = 0;
  * @returns randomly selected string
  */
 function computerPlay(){
-   selection = [
-    "Rock",
-    "Paper",
-    "Scissors",
-  ];
   let randomSelection = selection[Math.floor(Math.random() * selection.length)];
   return randomSelection;
 }
@@ -59,34 +54,24 @@ function computerPlay(){
  * @returns String with game outcome
  */
 function playRound(playerSelection,computerSelection){
-  let newPlayerSelection = playerSelection.toLowerCase();
-  newPlayerSelection = newPlayerSelection.charAt(0).toUpperCase() + newPlayerSelection.substring(1,newPlayerSelection.length);
-  let valid = false;
-  for(let i = 0; i < 3; i++){
-    if(newPlayerSelection == selection[i]){
-      valid = true;
-    }
+  playerSelection = playerSelection.toLowerCase();
+  if(playerSelection == computerSelection.toLowerCase()){
+    return "Draw, you both picked " + playerSelection.toLowerCase() + "!";
   }
-  if(valid == false){
-    return "Invalid input, please try again!"
-  }
-  if(newPlayerSelection == computerSelection){
-    return "Draw, you both picked " + newPlayerSelection.toLowerCase() + "!";
-  }
-  if(newPlayerSelection == "Rock" && computerSelection == "Scissors"){
+  if(playerSelection == selection[0].toLowerCase() && computerSelection == selection[2]){
     wins++;
-    return "Win, " + newPlayerSelection.toLowerCase() + " beats " + computerSelection.toLowerCase() + "!";
+    return "Win, " + playerSelection + " beats " + computerSelection.toLowerCase() + "!";
   } 
-  else if (newPlayerSelection == "Paper" && computerSelection == "Rock") {
+  else if (playerSelection == selection[1].toLowerCase() && computerSelection == selection[0]) {
     wins++;
-    return "Win, " + newPlayerSelection.toLowerCase() + " beats " + computerSelection.toLowerCase() + "!";
+    return "Win, " + playerSelection + " beats " + computerSelection.toLowerCase() + "!";
   }
-  else if(newPlayerSelection == "Scissors" && computerSelection == "Paper"){
+  else if(playerSelection == selection[2].toLowerCase() && computerSelection == selection[0]){
     wins++;
-    return "Win, " + newPlayerSelection.toLowerCase() + " beats " + computerSelection.toLowerCase() + "!";
+    return "Win, " + playerSelection+ " beats " + computerSelection.toLowerCase() + "!";
   } 
   else {
-    return "Lose, " +  computerSelection.toLowerCase() + " beats " + newPlayerSelection.toLowerCase() + "!";
+    return "Lose, " +  computerSelection + " beats " + playerSelection.toLowerCase() + "!";
   }
 }
 /**
@@ -95,11 +80,22 @@ function playRound(playerSelection,computerSelection){
  * @param none
  * @return none
  */
-function game(){
+function game(x){
   for(let i = 0; i < 5; i++){
     let userInput  = prompt("Please enter Rock, Paper, or Scissors");
+    do {
+      for(let i = 0; i < 3; i++){
+        if(userInput == selection[i].toLowerCase()){
+          valid = true;
+        }
+      }
+        if(valid == false){
+          console.log("Invalid Input, try again!");
+          userInput  = prompt("Please enter Rock, Paper, or Scissors");
+        }
+    } while(valid == false);
     console.log(playRound(userInput, computerPlay()));
   }
-  console.log("You won " + wins + " out of 5 rounds!");
+  console.log("You won " + wins + " out of 5 rounds!");  
 }
-game();
+game(0);
