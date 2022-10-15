@@ -36,7 +36,7 @@ function conditions(){
   }
 }
 // selection array
-let selection = ["Rock","Paper","Scissors",];
+let selection = ["Rock","Paper","Scissors"];
 // win counter
 let wins = 0;
 /**
@@ -80,12 +80,15 @@ function playRound(playerSelection,computerSelection){
  * @param none
  * @return none
  */
-function game(x){
+function game(){
   for(let i = 0; i < 5; i++){
     let userInput  = prompt("Please enter Rock, Paper, or Scissors");
     do {
       for(let i = 0; i < 3; i++){
-        if(userInput == selection[i].toLowerCase()){
+        if(userInput == null){
+          return;
+        }
+        else if ( userInput == selection[i].toLowerCase()){
           valid = true;
         }
       }
@@ -98,4 +101,4 @@ function game(x){
   }
   console.log("You won " + wins + " out of 5 rounds!");  
 }
-game(0);
+game();
